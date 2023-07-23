@@ -9,6 +9,7 @@ class BookController extends Controller
      public function index()
     {
         // $request->session()->flush();
-        dd('ini halaman buku');
+        // dd('ini halaman buku');
+        return view('book');
     }
 }
