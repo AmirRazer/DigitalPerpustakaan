@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
+use Termwind\Components\Dd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Termwind\Components\Dd;
 
 class AuthController extends Controller
 {
@@ -32,11 +34,16 @@ class AuthController extends Controller
          if (Auth::attempt($credentials)) {
             //cek apakah user status = active
             if(Auth::user()->status != 'active'){
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
                 Session::flash('status', 'faild');
                 Session::flash('message', 'your account is not active. Please contact admin');
                 return redirect('/login');
             }
             $request->session()->regenerate();
+
 
             if(Auth::user()->role_id == 1){
                 return redirect('/dashboard');
@@ -58,6 +65,22 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/login');
+    }
+    public function registerProcess(Request $request)
+    {
+        $validated = $request->validate([
+            'username' => 'required|unique:users|max:255',
+            'password' => 'required|max:255',
+            'phone' => 'required',
+            'addres' =>'required',
+        ]);
+        $request['password'] = Hash::make($request->password);
+        $user = User::create($request->all());
+     
+
+        session::flash('status','success');
+        session::flash('message','register success. Wait admin for approval');
+        return redirect('/register');
     }
   
 }
