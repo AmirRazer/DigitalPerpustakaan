@@ -9,6 +9,6 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         // $request->session()->flush();
-        dd('ini halaman dahboard');
+       return view('dashboard');
     }
 }
