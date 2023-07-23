@@ -21,6 +21,6 @@ class CategoryController extends Controller
             'name' => 'required|unique:categories|max:100',
         ]);
         $category = Category::create($request->all());
-        return redirect('categories');
+        return redirect('categories')->with('status','Category added successfully!');
     }
 }
