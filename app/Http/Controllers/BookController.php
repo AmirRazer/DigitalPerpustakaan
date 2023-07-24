@@ -14,4 +14,8 @@ class BookController extends Controller
         // dd('ini halaman buku');
         return view('book',['books'=>$books]);
     }
+    public function add()
+    {
+        return view('book-add');
+    }
 }
