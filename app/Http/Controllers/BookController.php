@@ -63,4 +63,16 @@ class BookController extends Controller
         }
         return redirect('books')->with('status','Data Buku Berhasil Diubah');
     }
+
+    public function delete($slug)
+    {
+        $book  = Book::where('slug',$slug)->first();
+        return view('book-delete',['book'=>$book]);
+    }
+    public function destroy($slug)
+    {
+        $book = Book::where('slug',$slug)->first();
+        $book->delete();
+        return redirect('books')->with('status','Data Buku Berhasil Dihapus');
+    }
 }

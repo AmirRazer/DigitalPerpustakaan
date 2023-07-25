@@ -43,8 +43,8 @@
                                 @endforeach</td>
                             <td>{{$item->status}}</td>
                              <td>
-                        <a href="book-edit/{{$item->slug}}">Edit</a>
-                        <a href="#">Delet</a>
+                        <a href="/book-edit/{{$item->slug}}">Edit</a>
+                        <a href="/book-delete/{{$item->slug}}">Delet</a>
                     </td>
                         </tr>
                     @endforeach
