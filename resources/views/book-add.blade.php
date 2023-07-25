@@ -28,6 +28,14 @@
                 <input type="text" name="title" id="title" class="form-control" placeholder="Book title"
                 value="{{old('title')}}">
             </div>
+            <div class="mb-3">
+                <select name="categories" id="category" class="form-control">
+                    @foreach($categories as $item)
+                    <option value="{{$item->id}}">{{$item->name}}</option>
+                        
+                    @endforeach
+                </select>
+            </div>
             <div >
                 <label for="image" class="form-label">Image</label>
                 <input type="file" name="image" class="form-control">

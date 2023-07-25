@@ -3,6 +3,7 @@
 namespace App\Models;
 
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,5 +26,9 @@ class Book extends Model
                 'source' => 'title'
             ]
         ];
+    }
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class,'book_categories','book_id','category_id');
     }
 }
