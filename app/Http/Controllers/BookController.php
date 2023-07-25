@@ -37,4 +37,30 @@ class BookController extends Controller
         $book->categories()->sync($request->categories);
         return redirect('books')->with('status','Data Buku Berhasil Ditambahkan');
     }
+    public function edit($slug)
+    {
+        $book = Book::where('slug',$slug)->first();
+        $categories = Category::all();
+        return view('book-edit',['categories'=>$categories,'book'=>$book]);
+    }
+
+    public function update(Request $request,$slug)
+    {
+
+        if($request->file('image')){
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $newName = $request->title.'-'.now()->timestamp.'.'.$extension;
+            $request->file('image')->storeAs('covers',$newName);
+            $request['cover'] = $newName;
+        }
+        
+        $book = Book::where('slug',$slug)->first();
+        $book->update($request->all()); 
+        $book->categories()->sync($request->categories);
+        
+        if($request->categories){
+        $book->categories()->sync($request->categories);
+        }
+        return redirect('books')->with('status','Data Buku Berhasil Diubah');
+    }
 }
