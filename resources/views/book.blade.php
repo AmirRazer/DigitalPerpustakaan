@@ -23,6 +23,7 @@
                         <th>No.</th>
                         <th>Code</th>
                         <th>Title</th>
+                        <th>Category</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -33,6 +34,13 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$item->book_code}}</td>
                             <td>{{$item->title}}</td>
+                            <td>
+                                @foreach($item->categories as $category)
+                                    {{$category->name}}
+                                    @if(!$loop->last)
+                                    ,
+                                    @endif                                   
+                                @endforeach</td>
                             <td>{{$item->status}}</td>
                              <td>
                         <a href="#">Edit</a>
