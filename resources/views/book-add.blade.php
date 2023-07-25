@@ -22,11 +22,11 @@
                 <label for="code" class="form-label">Code</label>
                 <input type="text" name="book_code" id="book_code" class="form-control" placeholder="Book Code">
             </div>
-            <div>
+            <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" name="title" id="title" class="form-control" placeholder="Book title">
             </div>
-            <div class="mb-3">
+            <div >
                 <label for="cover" class="form-label">Cover</label>
                 <input type="file" name="cover" class="form-control">
             </div>
