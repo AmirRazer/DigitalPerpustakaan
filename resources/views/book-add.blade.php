@@ -29,8 +29,8 @@
                 value="{{old('title')}}">
             </div>
             <div >
-                <label for="cover" class="form-label">Cover</label>
-                <input type="file" name="cover" class="form-control">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" name="image" class="form-control">
             </div>
             <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Save</button>
